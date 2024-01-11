@@ -1,0 +1,21 @@
+name: SonarQube Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SonarQube Scanner
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-project-key: <your-sonarqube-project-key>
+          sonar-organization: <your-sonarqube-organization>
